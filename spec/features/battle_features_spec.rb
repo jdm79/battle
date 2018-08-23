@@ -16,10 +16,8 @@ feature "Battle Features" do
 
   scenario 'allows player 1 to attack player 2' do
     sign_in_and_play
-    visit('/attack')
-    click_button('attack_player_two')
-    vist('/play')
-    expect(page).to have_content('90')
+    click_link('ATTACK')
+    expect(page).to have_content('John attacked Paul')
   end
 
 end

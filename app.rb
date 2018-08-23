@@ -20,13 +20,13 @@ class Battle < Sinatra::Base
     @p2 = session[:player_two]
     @player_one_points = session[:player_one_points]
     @player_two_points = session[:player_two_points]
-    # p @name_one
-    # p @player_one_points
     erb(:play)
   end
 
   get '/attack' do
-    @player_two_points.to_i - 10
+    # @player_two_points.to_i - 10
+    @p1 = session[:player_one]
+    @p2 = session[:player_two]
     erb(:attack)
   end
 
