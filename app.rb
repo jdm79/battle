@@ -8,20 +8,20 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    session[:player_1] = params[:player1] #name= in form
-    session[:player_2] = params[:player2]
+    session[:player_one] = params[:player_one] #name= in form
+    session[:player_two] = params[:player_two]
     session[:player_one_points] = 100
     session[:player_two_points] = 100
     redirect '/play'
   end
 
   get '/play' do 
-    @name_one = session[:player_1]
-    @name_two = session[:player_2]
+    @name_one = session[:player_one]
+    @name_two = session[:player_two]
     @player_one_points = session[:player_one_points]
     @player_two_points = session[:player_two_points]
-    p @name_one
-    p @player_one_points
+    # p @name_one
+    # p @player_one_points
     erb(:play)
   end
 
