@@ -13,10 +13,9 @@ let(:p1) { Player.new('John') }
     end
   end
 
-  describe '#attack' do
+  describe '#receive_damage' do
     it 'should decreases opponent\'s score by 10' do
-      p2 = Player.new('Dave')
-      expect { p1.attack(p2) }.to change { p2.hitpoints }.by -10
+      expect { p1.receive_damage }.to change { p1.hitpoints }.by -10
     end
   end
 end

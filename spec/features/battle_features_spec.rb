@@ -27,5 +27,4 @@ feature "Battle Features" do
     expect(page).to have_content('50')
   end
 
-
 end
