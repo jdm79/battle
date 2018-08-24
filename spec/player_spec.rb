@@ -2,16 +2,21 @@ require 'player'
 
 
 describe Player do
-subject(:player) { Player.new('test') }
+let(:p1) { Player.new('John') }
 
   describe '#initialize' do 
     it 'should know its name' do
-      p1 = Player.new('John')
       expect(p1.name).to eq('John')
       end
-    it 'should know its name' do 
-      expect(subject.name).to eq('test')  
+    it 'should have default hitpoints' do
+      expect(p1.hitpoints).to eq 60
     end
   end
 
+  describe '#attack' do
+    it 'should decreases opponent\'s score by 10' do
+      p2 = Player.new('Dave')
+      expect { p1.attack(p2) }.to change { p2.hitpoints }.by -10
+    end
+  end
 end

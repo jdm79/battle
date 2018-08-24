@@ -2,45 +2,32 @@ require 'sinatra/base'
 require './lib/player'
 
 class Battle < Sinatra::Base
-    enable :sessions
-
-    $p1 = 'John'
-
+  enable :sessions
 
   get '/' do
    erb(:index)
   end
 
   post '/names' do
-    # session[:player_one] = params[:player_one] #name= in form
-    # session[:player_two] = params[:player_two]
     $p1 = Player.new(params[:player_one])
     $p2 = Player.new(params[:player_two])
-    session[:player_one_points] = 100
-    session[:player_two_points] = 100
     redirect '/play'
   end
 
   get '/play' do 
-    # @p1 = session[:player_one]
-    # @p2 = session[:player_two]
     @p1 = $p1.name
     @p2 = $p2.name
-    @player_one_points = session[:player_one_points]
-    @player_two_points = session[:player_two_points]
+    @player_one_points = $p1.hitpoints
+    @player_two_points = $p2.hitpoints
     erb(:play)
   end
 
   get '/attack' do
-    # @player_two_points.to_i - 10
-    # @p1 = session[:player_one]
-    # @p2 = session[:player_two]
     @p1 = $p1.name
     @p2 = $p2.name
+    $p1.attack($p2)
     erb(:attack)
   end
 
-
   run! if app_file == $0
-
 end

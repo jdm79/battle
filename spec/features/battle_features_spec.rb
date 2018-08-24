@@ -8,10 +8,10 @@ feature "Battle Features" do
 
   scenario 'display player hit points' do 
     visit('/')
-    fill_in :player_one, with: 'John'      # fill_in('player1', with: 'John')
-    fill_in :player_two, with: 'Paul'      # fill_in('player2', with: 'Paul')
+    fill_in :player_one, with: 'John'      
+    fill_in :player_two, with: 'Paul'      
     click_on('Submit')
-    expect(page).to have_content('100')
+    expect(page).to have_content('60')
   end
 
   scenario 'allows player 1 to attack player 2' do
@@ -19,5 +19,13 @@ feature "Battle Features" do
     click_link('ATTACK')
     expect(page).to have_content('John attacked Paul')
   end
+
+  scenario 'hitpoints have reduced' do
+    sign_in_and_play
+    click_link('ATTACK')
+    click_link('OK')
+    expect(page).to have_content('50')
+  end
+
 
 end
